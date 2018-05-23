@@ -1,7 +1,7 @@
 .PHONY  : all clean run
 
 VENV   = venv
-MAIN   = src/scimagojr.py
+MAIN   = scimagojr.py
 
 all run: $(VENV)
 	$(VENV)/bin/python $(MAIN)
