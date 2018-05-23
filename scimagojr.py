@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import argparse
 import sqlite3
 import pandas
 
@@ -39,9 +38,8 @@ def convert(scimagofile, dbfile):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description='convert scimagojr excel file to sqlite')
-    parser.add_argument('SCIMAGOFILE', help='scimago excel input file')
-    parser.add_argument('DBFILE', help='sqlite3 output file')
-    args = parser.parse_args()
-    convert(args.SCIMAGOFILE, args.DBFILE)
+    from six.moves.configparser import ConfigParser
+    config = ConfigParser()
+    config.read('config.ini')
+    convert(scimagofile=config.get('data', 'scimagojr_file'),
+            dbfile=config.get('data', 'dbfile'))
